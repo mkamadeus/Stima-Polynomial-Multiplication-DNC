@@ -5,28 +5,57 @@ using namespace std;
 
 int main()
 {
-    Polynomial P1(5);
-    Polynomial P2(5);
+    // Degree Input
+    int n;
+    scanf("%d", &n);
 
-    P1.inputPolynomial();
-    P2.inputPolynomial();
+    // Initialization 
+    Polynomial P1(n);
+    Polynomial P2(n);
+    Polynomial P3;
+    Polynomial P4;
 
-    P1.printPolynomial();
-    P2.printPolynomial();
+    // Initialize seed for random coefficient generation
+    srand(time(NULL));
 
-    Polynomial P3 = P1.multiplyBruteForce(P2);
-    P3.printPolynomial();
+    // Generate random coefficients for P1
+    P1.generateRandom();
+    printf("P1 (%d)\t: ", P1.getDegree());
+    P1.printCoefficients();
 
-    Polynomial P3Other = P1.multiplyDivideConquer(P2);
-    P3Other.printPolynomial();
+    // Generate random coefficients for P2
+    P2.generateRandom();
+    printf("P2 (%d)\t: ", P2.getDegree());
+    P2.printCoefficients();
 
-    // Polynomial P4 = P1+P2;
-    // P4.printPolynomial();
+    // Brute force multiplication timer
+    auto start1 = std::chrono::steady_clock::now();
+    P3 = P1 * P2;
+    auto stop1 = std::chrono::steady_clock::now();
+    
+    // Output result by brute force
+    printf("By Brute Force: \n");
+    printf("P3 (%d)\t: ", P3.getDegree());
+    P3.printCoefficients();
 
-    // Polynomial P5 = P1-P2;
-    // P5.printPolynomial();
+    auto duration1  = std::chrono::duration_cast<std::chrono::microseconds>(stop1-start1);
+    std::cout << '\n' << "Time taken: " << duration1.count() << " micros\n\n";
 
-    // Polynomial P6 = P1.multiplyDivideConquer(P2);
-    // P6.printPolynomial();
+    // Divide and conquer multiplication timer
+    auto start2 = std::chrono::steady_clock::now();
+    P4 = P1.multiplyDivideConquer(P2);
+    auto stop2 = std::chrono::steady_clock::now();
+
+    // Output result by Divide and Conquer
+    printf("By Divide and Conquer: \n");
+    printf("P3 (%d)\t: ",P3.getDegree());
+    P4.printCoefficients();
+
+    auto duration2  = std::chrono::duration_cast<std::chrono::microseconds>(stop2-start2);
+    std::cout << '\n' << "Time taken: " << duration2.count() << " micros\n\n";
+
+    // Outputs verdict for checking equal result or not
+    printf("VERDICT : ");
+    printf(P3==P4 ? "EQUAL\n" : "NOT EQUAL\n");
 
 }
