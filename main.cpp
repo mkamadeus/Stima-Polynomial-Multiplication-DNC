@@ -7,13 +7,15 @@ int main()
 {
     // Degree Input
     int n;
+    printf("Input degree for P1 & P2: ");
     scanf("%d", &n);
 
     // Initialization 
     Polynomial P1(n);
     Polynomial P2(n);
-    Polynomial P3;
-    Polynomial P4;
+
+    Polynomial P3; // Storing brute force result
+    Polynomial P4; // Storing DnC result
 
     // Initialize seed for random coefficient generation
     srand(time(NULL));
@@ -34,9 +36,9 @@ int main()
     auto stop1 = std::chrono::steady_clock::now();
     
     // Output result by brute force
-    printf("By Brute Force: \n");
+    printf("By Brute Force O(n^2): \n");
     printf("P3 (%d)\t: ", P3.getDegree());
-    P3.printCoefficients();
+    P3.printPolynomial();
 
     auto duration1  = std::chrono::duration_cast<std::chrono::microseconds>(stop1-start1);
     std::cout << '\n' << "Time taken: " << duration1.count() << " micros\n\n";
@@ -47,9 +49,9 @@ int main()
     auto stop2 = std::chrono::steady_clock::now();
 
     // Output result by Divide and Conquer
-    printf("By Divide and Conquer: \n");
+    printf("By Divide and Conquer O(n^1.585): \n");
     printf("P3 (%d)\t: ",P3.getDegree());
-    P4.printCoefficients();
+    P4.printPolynomial();
 
     auto duration2  = std::chrono::duration_cast<std::chrono::microseconds>(stop2-start2);
     std::cout << '\n' << "Time taken: " << duration2.count() << " micros\n\n";
