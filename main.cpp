@@ -40,8 +40,9 @@ int main()
     printf("P3 (%d)\t: ", P3.getDegree());
     P3.printPolynomial();
 
+    // Show brute force duration in microseconds
     auto duration1  = std::chrono::duration_cast<std::chrono::microseconds>(stop1-start1);
-    std::cout << '\n' << "Time taken: " << duration1.count() << " micros\n\n";
+    std::cout << '\n' << "Time taken: " << duration1.count() << " microsecond(s)\n\n";
 
     // Divide and conquer multiplication timer
     auto start2 = std::chrono::steady_clock::now();
@@ -53,8 +54,9 @@ int main()
     printf("P3 (%d)\t: ",P3.getDegree());
     P4.printPolynomial();
 
+    // Show divide and conquer duration in microseconds
     auto duration2  = std::chrono::duration_cast<std::chrono::microseconds>(stop2-start2);
-    std::cout << '\n' << "Time taken: " << duration2.count() << " micros\n\n";
+    std::cout << '\n' << "Time taken: " << duration2.count() << " microsecond(s)\n\n";
 
     // Outputs verdict for checking equal result or not
     printf("VERDICT : ");
