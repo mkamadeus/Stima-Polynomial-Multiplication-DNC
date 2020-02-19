@@ -26,7 +26,7 @@ public:
     int getDegree();
     // Get coefficient of the term with the power of n
     int getCoef(int n);
-    // Set degree of the polynomial
+    // Set degree of the polynomial (increasing only)
     void setDegree(int n);
     // Set coeffcient of the term with the power of n
     void setCoef(int x, int n);

@@ -52,7 +52,7 @@ int Polynomial::getCoef(int n)
     return this->coef[n];
 }
 
-// Set degree of the polynomial
+// Set degree of the polynomial (increasing only)
 void Polynomial::setDegree(int n)
 {
     // Save previous values
@@ -64,7 +64,7 @@ void Polynomial::setDegree(int n)
     this->degree = n;
     this->coef = new int[this->degree+1];
 
-    // 
+    // Fill in values, if value doesn't exist fill in with 0
     for(int i=0;i<=this->degree;i++)
     {
         if(i>prev) coef[i]=0;
@@ -227,13 +227,17 @@ void Polynomial::printPolynomial()
     {
         int curr = this->coef[i];
         int absCurr = abs(this->coef[i]);
+        // If coefficient not zero..
         if(curr!=0)
         {
+            // If not yet printed, print without plus signs
             if(!printed) printf(curr > 0 ? "%d" : "- %d", absCurr);
             else printf(curr > 0 ? " + %d" : " - %d", absCurr);
 
+            // If not x^0, print x^i
             if(i!=0) printf("x^%d", i);
             
+            // Set flag to already printed
             if(!printed) printed = true;
         }
     }
