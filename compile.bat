@@ -1,3 +1,3 @@
 @echo off
 
-g++ -o main.exe main.cpp Polynomial.cpp
+g++ -o ./bin/main.exe ./src/*.cpp

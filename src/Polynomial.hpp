@@ -5,11 +5,17 @@
 
 using namespace std;
 
+extern int additionCounter;
+extern int multiplicationCounter;
+
 class Polynomial {
 private:
+    // Polynomial degree and coefficient
     int degree;
     int* coef;
 
+    // Counters (for addition and multiplication)
+    
 public:
     // Default ctor
     Polynomial();
@@ -44,8 +50,6 @@ public:
     // Divide polynomial by a factor of x (remove constants)
     Polynomial operator>>(int n);
 
-    // Multiply two polynomials in a brute force manner. O(N^2)
-    Polynomial multiplyBruteForce(const Polynomial& other);
     // Multiply two polynomials in a divide and conquer manner. O(N^1.585)
     Polynomial multiplyDivideConquer(const Polynomial& other);
 

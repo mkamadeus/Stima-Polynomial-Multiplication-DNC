@@ -90,8 +90,11 @@ Polynomial Polynomial::operator+(const Polynomial& other)
 
     // Add up values in the array
     for(int i=0;i<=this->degree;i++) temp[i] = this->coef[i];
-    for(int i=0;i<=other.degree;i++) temp[i] += other.coef[i];
-    
+    for(int i=0;i<=other.degree;i++)
+    {
+        ++additionCounter;
+        temp[i] += other.coef[i];
+    }
     // Minimize degree if current degree holds coefficient of 0
     int builtDegree = maxDegree;
     while(temp[builtDegree]==0) builtDegree--;
@@ -115,8 +118,12 @@ Polynomial Polynomial::operator-(const Polynomial& other)
 
     // Substract values in the array
     for(int i=0;i<=this->degree;i++) temp[i] = this->coef[i];
-    for(int i=0;i<=other.degree;i++) temp[i] -= other.coef[i];
-    
+    for(int i=0;i<=other.degree;i++)
+    {
+        ++additionCounter;
+        temp[i] -= other.coef[i];
+    }
+
     // Minimize degree if current degree holds coefficient of 0
     int builtDegree = maxDegree;
     while(temp[builtDegree]==0) builtDegree--;
@@ -136,7 +143,11 @@ Polynomial Polynomial::operator*(const Polynomial& other)
     /* =-=-=-= BRUTE FORCE ALGORITHM =-=-=-= */
     for(int i=0;i<=this->degree;i++)
         for(int j=0;j<=other.degree;j++)
+        {
+            ++additionCounter;
+            ++multiplicationCounter;
             result.coef[i+j] += this->coef[i] * other.coef[j];
+        }
 
     return result;
 }
