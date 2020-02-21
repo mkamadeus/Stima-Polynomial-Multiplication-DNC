@@ -49,7 +49,7 @@ int main()
     printf("By Brute Force O(n^2): \n");
     // Show brute force duration in microseconds
     auto duration1  = std::chrono::duration_cast<std::chrono::microseconds>(stop1-start1);
-    std::cout << '\n' << "Time taken: " << duration1.count() << " microsecond(s)\n";
+    std::cout << '\n' << "Time taken: " << duration1.count() << " ms\n";
     std::cout << "Addition count: " << additionCounter << " time(s)\n";
     std::cout << "Multiplication count: " << multiplicationCounter << " time(s)\n\n";
 
@@ -68,12 +68,30 @@ int main()
     printf("By Divide and Conquer O(n^1.585): \n");
     // Show divide and conquer duration in microseconds
     auto duration2  = std::chrono::duration_cast<std::chrono::microseconds>(stop2-start2);
-    std::cout << '\n' << "Time taken: " << duration2.count() << " microsecond(s)\n";
+    std::cout << '\n' << "Time taken: " << duration2.count() << " ms\n";
     std::cout << "Addition count: " << additionCounter << " times\n";
     std::cout << "Multiplication count: " << multiplicationCounter << " times\n\n";
 
     // Outputs verdict for checking equal result or not
     printf("VERDICT : ");
-    printf(P3==P4 ? "EQUAL\n" : "NOT EQUAL\n");
+    printf(P3==P4 ? "EQUAL\n\n" : "NOT EQUAL\n\n");
 
+    // Check for time difference
+    int delta = duration2.count() - duration1.count();
+    printf("Time difference : %d ms\n", delta);
+    
+    
+    printf("Divide and Conquer is ");
+    if(delta>0) printf("slower than Brute Force");
+    else if(delta<0) printf("faster than Brute Force");
+    else printf("as fast as Brute Force");
+
+    // If brute force duration not equal 0 (percentage can be found)
+    if(duration1.count()!=0)
+    {
+        if(delta>0) printf(" by %.2f%\045", (float)(abs(delta)*100)/duration1.count());
+        else if(delta<0) printf(" by %.2f\045", (float)(abs(delta)*100)/duration1.count());
+    }
+
+    printf(".\n");
 }
