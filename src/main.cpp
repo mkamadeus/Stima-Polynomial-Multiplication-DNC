@@ -26,12 +26,12 @@ int main()
     // Generate random coefficients for P1
     P1.generateRandom();
     printf("P1 (%d)\t: ", P1.getDegree());
-    P1.printCoefficients();
+    P1.printPolynomial();
 
     // Generate random coefficients for P2
     P2.generateRandom();
     printf("P2 (%d)\t: ", P2.getDegree());
-    P2.printCoefficients();
+    P2.printPolynomial();
 
     // Reset counter
     additionCounter = 0;
